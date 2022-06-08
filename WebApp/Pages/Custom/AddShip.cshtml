@@ -1,0 +1,70 @@
+﻿@page
+@using System.Collections.Generic
+@using Microsoft.AspNetCore.Diagnostics
+@model WebApp.Pages.Custom.AddShip
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<form method="post">
+    <input asp-for="gameId" value="@Model.gameId" hidden="hidden">
+    <div class="form-group row justify-content-md-center ">
+
+
+        <div class="col-sm-5  alert alert-info border-dark">
+            @if (!ModelState.IsValid)
+            {
+                <div asp-validation-summary="All" class="alert alert-danger justify-content-md-center"></div>
+            }
+            <div class="row alert alert-dark justify-content-md-center"> Add ship</div>
+            <div class="form-group row ">
+                <label asp-for="ShipName" class="col-sm-3 col-form-label">Ship name:</label>
+                <div class="col-sm-6">
+                    <input type="text" asp-for="ShipName" class="form-control form-control-sm" placeholder="Enter ship name">
+
+                </div>
+            </div>
+            <div class="form-group row ">
+                <label asp-for="ShipHeight" class="col-sm-3 col-form-label">Ship width:</label>
+                <div class="col-sm-3">
+                    <input asp-for="ShipHeight" class="form-control form-control-sm" value="1">
+                    <small class="form-text text-muted">Min.1, Max. 6</small>
+
+                </div>
+            </div>
+            <div class="form-group row">
+                <label asp-for="ShipLength" class=" col-sm-3 col-form-label">Ship length</label>
+                <div class="col-sm-3">
+                    <input asp-for="ShipLength" class="form-control form-control-sm" value="1">
+                     <small class="form-text text-muted">Min.1, Max. 6</small>
+                </div>
+            </div>
+            <div class="form-group row justify-content-center">
+
+                <div class="col-sm-5">
+                    <button name="button" class="btn btn-secondary" value="Add">Add ship</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-1"></div>
+
+        <div class="col-sm-5">
+            <span asp-for="NoBoats" required class="text-danger"></span>
+            <div class="row alert alert-info justify-content-center">
+                Current ships:
+            </div>
+            
+            @foreach (var ship in @Model.Ships)
+            {
+                <div class="row alert alert-dark">
+                    @ship.Name with length of @ship.Length and height of @ship.Height
+                </div>
+            }
+            <div class="row  justify-content-center">
+                <button name="button" class="btn btn-success" value="Continue">Continue</button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,75 @@
+﻿@page
+@model WebApp.Pages.Bombing.Index
+
+@{
+    Layout = "Shared/_Layout";
+}
+@if (!ModelState.IsValid)
+{
+    <div class="alert alert-danger">
+        <div asp-validation-summary="All"></div>
+    </div>
+}
+
+<div class="row text-center">
+
+    <div class="col-sm-6">
+        <div class="alert alert-warning">
+            Opponent's board
+        </div>
+        <partial name="Shared/_ClickableBoardPartial" model="Model"/>
+
+    </div>
+    <div class="col-sm-6">
+        <div class="alert alert-success">
+            Your board
+        </div>
+        <partial name="Shared/_StaticBoardPartial" model="Model.OwnBoard"/>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm">
+        <div class="row text-center">
+            <div class="col-sm text-info">
+                You have destroyed the following ships:
+            </div>
+        </div>
+        @foreach (var ship in Model.DestroyedShips)
+        {
+            <div class="row text-success">
+                <div class="col-sm text-success ">
+                    @ship.Name with size of @(ship.Height * ship.Length)
+                </div>
+            </div>
+        }
+    </div>
+    <div class="col-sm">
+        <div class="row text-center">
+            <div class="col-sm text-success">
+                Current player: @ViewData["CurrentPlayerName"]
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-sm text-success">
+                Bomb hit rate: @ViewData["BombHitRate"]%
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col-sm text-danger">
+                Your opponent has destroyed: @ViewData["OpponentDestroyedShips"]
+            </div>
+        </div>
+
+        @*<div class="row text-center">
+            <div class="col-sm text-danger">
+                <form method="post"> <button value="submit">Undo move</button></form>
+            </div>
+        </div>*@
+
+        <div class="row text-center">
+            <div class="col-sm text-danger">
+                <button value="submit" onclick="alert(@ViewData["Rules"])" class="btn btn-info">Show rules</button>
+            </div>
+        </div>
+    </div>
+</div>

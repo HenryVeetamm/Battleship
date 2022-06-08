@@ -1,0 +1,23 @@
+﻿@page
+@model WebApp.Pages.WinPage.Index
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+<div class="row text-center">
+
+    <div class="col-sm">
+        <div class="alert alert-success">
+            Winner is @ViewData["WinnerName"]
+        </div>
+        <partial name="Shared/_StaticBoardPartial" model="Model.WinnerBoard"/>
+
+    </div>
+    <div class="col-sm">
+        <div class="alert alert-danger">
+          Loser is @ViewData["LoserName"]
+        </div>
+        <partial name="Shared/_StaticBoardPartial" model="Model.LoserBoard"/>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <a asp-page="/Games/Index" class="btn btn-light">
+                <img src="loadGame2.jpg" alt="ship1" style="width:100%">
+            </a>
+        </div>
+        <div class="col-lg-6">
+            <a asp-page="/NewGame/Index" class="btn btn-light">
+                <img src="newGame.jpg" alt="ship1" style="width:100%">
+            </a>
+        </div>
+    </div>
+</div>

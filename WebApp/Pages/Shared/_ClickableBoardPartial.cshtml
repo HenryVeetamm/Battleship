@@ -1,0 +1,42 @@
+﻿@functions{
+    private readonly char[] _alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+}
+
+<table class="table table-bordered">
+        <thead>
+        <tr>
+            <th scope="col"></th>
+            @for (var x = 0; x < Model.OpponentBoard.GetLength(0); x++)
+            {
+                <th scope="col">@_alphabet[x]</th>
+            }
+        </tr>
+        </thead>
+        @for (var y = 0; y < Model.OpponentBoard.GetLength(1); y++)
+        {
+            <tr>
+                <th scope="row" style="width: 5%;">@(y + 1)</th>
+                @for (var x = 0; x < Model.OpponentBoard.GetLength(0); x++)
+                {
+                    <td style="cursor: pointer;" onclick="window.location.href = '?x=@x&y=@y&gameId=@Model.gameId'">
+                        @if (Model.OpponentBoard[x, y].IsShip == false && Model.OpponentBoard[x, y].IsBomb)
+                        {
+                            <div class="imgContainer">
+                                <img src="~/miss2.2.gif" alt="bomb" id="imageFullSize">
+                            </div>
+                        }
+                        else if (Model.OpponentBoard[x, y].IsShip && Model.OpponentBoard[x, y].IsBomb)
+                        {
+                            <div class="imgContainer">
+                                <img src="~/boatHit.gif" alt="bomb" id="imageFullSize">
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="content">@Model.OpponentBoard[x, y]</div>
+                        }
+                    </td>
+                }
+            </tr>
+        }
+    </table>

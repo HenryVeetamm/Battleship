@@ -1,0 +1,32 @@
+﻿@page
+@model WebApp.Pages.PlayerSwitch.Index
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+@if (@Model.moveResult == "Hit")
+{
+    <div class="row alert alert-success justify-content-center">
+        Player 
+        <div class="font-weight-bold">&nbsp @Model.CurrentPlayerName &nbsp</div>
+        made a move and it was a @Model.moveResult
+    </div>
+}
+else
+{
+    <div class="row alert alert-warning justify-content-center">
+        Player <div class="font-weight-bold">&nbsp @Model.CurrentPlayerName &nbsp</div> made a move and it was a @Model.moveResult
+    </div>
+}
+
+<div class="row alert alert-info justify-content-center">
+    Player <div class="font-weight-bold">&nbsp @Model.NextPlayerName &nbsp</div> click continue to place a bomb
+</div>
+
+<form method="post">
+    <div class="row justify-content-center">
+        <button class="btn btn-danger  mr-3" name="button" value="Undo">Undo move</button>
+        <button class="btn btn-success" name="button" value="Continue">Continue</button>
+    </div>
+</form>

@@ -1,0 +1,37 @@
+﻿@page
+@using WebApp.Pages.Shared
+@model WebApp.Pages.NewGame.Index
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+
+<form method="post">
+    <div class="container">
+        <div class="row justify-content-center">
+            <H1 class="p-3 mb-2 bg-info rounded-pill text-white">SELECT A GAME</H1>
+        </div>
+        <div class="row justify-content-center">
+            <H2>↙  ⬇  ↘</H2>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <button name="choice" value="1" class="btn btn-light">
+                    <img src="classical.jpg" alt="ship1" style="width:100%">
+                </button>
+            </div>
+            <div class="col-lg-4">
+                <button name="choice" value="2" class="btn btn-light">
+                    <img src="small.jpg" alt="ship2" style="width:100%">
+                </button>
+            </div>
+
+            <div class="col-lg-4 ">
+                <button name="choice" value="3" class="btn btn-light">
+                    <img src="custom.jpg" alt="ship3" style="width:100%">
+                </button>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,54 @@
+﻿@page
+@model WebApp.Pages.PlaceShip.Index
+
+@{
+    Layout = "Shared/_Layout";
+}
+@if (!ModelState.IsValid)
+{
+    <div asp-validation-summary="All" class="alert alert-danger"></div>
+}
+
+<div class="row">
+    <div class="col-sm-8">
+        <partial name="Shared/_StaticBoardPartial" model="@Model.Board"></partial>
+    </div>
+    <div class="col-sm">
+        <div class="row alert alert-warning justify-content-center">Current player: @Model.CurrentPlayerName </div>
+        <div class="alert alert-secondary">
+            <div class="row justify-content-center alert alert-success rounded">Ship: </div>
+            <div class="row justify-content-center">Name: @Model.ship.Name </div>
+            <div class="row justify-content-center">
+                Width: @Model.ship.Height
+                Length: @Model.ship.Length
+            </div>
+        </div>
+        <form method="post">
+            <input asp-for="gameId" value="@Model.gameId" hidden="hidden"/>
+            <div class="alert alert-secondary">
+                <div class="row justify-content-md-center">
+                    <label asp-for="Start" class="form-label">Start coordinate</label>
+                    <input asp-for="Start" class="form-control">
+                    <small class="form-text text-muted">Example: A1, F5</small>
+                </div>
+            </div>
+            <div class="alert alert-secondary">
+                <div class="row justify-content-center">Ship placement from start coordinate</div>
+                <div class="row justify-content-md-center">
+                    <div class="form-check form-check-inline">
+                        <input asp-for="Rotate" class="form-check-input" type="radio" id="option1" value="1" checked>
+                        <label class="form-check-label" for="option1">Down</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input asp-for="Rotate" value="2" class="form-check-input" type="radio" id="option2">
+                        <label class="form-check-label" for="option2">Right</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <button type="submit" class="btn btn-success mr-1">Place Ship</button>
+                <button type="submit" class="btn btn-info" name="randomPlacement" value="true">Place all ships randomly</button>
+            </div>
+        </form>
+    </div>
+</div>

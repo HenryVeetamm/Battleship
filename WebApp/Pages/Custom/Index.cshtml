@@ -1,0 +1,56 @@
+﻿@page
+@using Domain.Enums
+@using System.Security.Principal
+@model WebApp.Pages.Custom.Index
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+@if (!ModelState.IsValid){
+    <div asp-validation-summary="All" class="alert alert-danger"></div>
+}
+
+<form method="post">
+    <div class="form-group row justify-content-md-center">
+        <label asp-for="Height" class=" col-sm-2 col-form-label">Board height</label>
+        <div class="col-sm-2">
+            <input asp-for="Height" class="form-control form-control-sm " value="5">
+            <small class="form-text text-muted">Min.5, Max. 15</small>
+        </div>
+    </div>
+    <div class="form-group row justify-content-md-center">
+        <label asp-for="Width" class="col-sm-2 col-form-label">Board width</label>
+        <div class="col-sm-2">
+            <input asp-for="Width" class="form-control  form-control-sm" value="5">
+            <small class="form-text text-muted">Min.5, Max. 15</small>
+        </div>
+    </div>
+
+    <div class="form-group row justify-content-md-center">
+        <label class="col-sm-2 col-form-label align-content-sm-end">Can ships touch?</label>
+        <div class="col-sm-4 form-control">
+            @foreach (var touchRule in Enum.GetValues(typeof(EShipTouchRule)).Cast<EShipTouchRule>())
+            {
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="@touchRule" asp-for="ShipTouch" value="@touchRule" class="custom-control-input">
+                    <label class="custom-control-label" for="@touchRule">@ShipTouchRule.ToString(touchRule)</label>
+                </div>
+            }
+        </div>
+    </div>
+
+    <div class="form-group row justify-content-md-center">
+        <label class="col-sm-3 col-form-label align-content-sm-end">Who makes the move after hit?</label>
+        <div class="col-sm-3 form-control">
+            @foreach (var moveRule in Enum.GetValues(typeof(EMoveAfterHit)).Cast<EMoveAfterHit>())
+            {
+                <div class="custom-control custom-radio custom-control-inline">
+                    <input type="radio" id="@moveRule" asp-for="MoveAfterHit" value="@moveRule" class="custom-control-input">
+                    <label class="custom-control-label" for="@moveRule">@MoveAfterHit.ToString(moveRule)</label>
+                </div>
+            }
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Continue</button>
+</form>

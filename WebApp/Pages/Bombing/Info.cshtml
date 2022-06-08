@@ -1,0 +1,18 @@
+﻿@page
+@model WebApp.Pages.Bombing.Info
+
+@{
+    Layout = "Shared/_Layout";
+}
+
+
+<div class="form-group row justify-content-md-center alert alert-success">
+
+    Player who starts bombing is
+    <div class="font-weight-bold">&nbsp @ViewData["StartPlayer"] &nbsp </div>
+    <div class="col-sm-2">
+        <form method="post">
+            <button value="submit" class="btn btn-success">Continue</button>
+        </form>
+    </div>
+</div>
